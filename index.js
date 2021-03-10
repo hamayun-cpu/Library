@@ -1,12 +1,14 @@
 const myLibrary = [];
 
-function Book(name, totalPages) {
+function Book(name, author, totalPages, read) {
   this.name = name;
+  this.author = author;
   this.totalPages = totalPages;
+  this.read = read;
 }
 
-function addBookToLibrary(name, totalPages) {
-  const book = new Book(name, totalPages);
+function addBookToLibrary(name, author, totalPages, read = false) {
+  const book = new Book(name, author, totalPages, read);
   myLibrary.push(book);
 }
 
@@ -18,7 +20,9 @@ function display() {
     newData.innerHTML = `
       <div class="col-sm">
       <h1>${obj.name}</h1>
+      <p>${obj.author}</p>
       <p>${obj.totalPages}</p>
+      <p>${obj.read}</p>
       </div>
     `;
 
@@ -28,10 +32,20 @@ function display() {
   myLibrary.forEach(myFunction);
 }
 
-addBookToLibrary('book1', 200);
+function displayForm() {
+  const target = document.getElementById('btn-primary');
+  target.classList.add('d-none');
+  const target1 = document.getElementById('container');
+  target1.classList.add('d-none');
+  const target2 = document.getElementById('display');
+  target2.style.display = 'block';
+}
 
-addBookToLibrary('book2', 250);
+addBookToLibrary('book1', 'hamayun', 200);
 
-addBookToLibrary('book2', 250);
+addBookToLibrary('book2', 'aqib', 250);
+
+addBookToLibrary('book2', 'talha', 250);
+
 
 display();
