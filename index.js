@@ -1,7 +1,11 @@
 const myLibrary = [];
+const target = document.getElementById('demo');
+const targetbtn = document.getElementById('add-btn');
+const targetdisplay = document.getElementById('display');
+let counter = 0;
 
-function Book(name, author, totalPages, read) {
-  this.name = name;
+function Book(booktitle, author, totalPages, read) {
+  this.booktitle = booktitle;
   this.author = author;
   this.totalPages = totalPages;
   this.read = read;
@@ -11,65 +15,58 @@ function saveLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-function addBookToLibrary(name, author, totalPages, read = false) {
-  const book = new Book(name, author, totalPages, read);
+function addBookToLibrary(booktitle, author, totalPages, read = false) {
+  const book = new Book(booktitle, author, totalPages, read);
   myLibrary.push(book);
   saveLibrary();
 }
 
-function display() {
-  const target = document.getElementById('demo');
-  function myFunction(obj) {
-    const newData = document.createElement('div');
-    newData.classList.add('col-4');
-    newData.innerHTML = `
-      <div class="col-sm">
-      <h1>${obj.name}</h1>
-      <p>${obj.author}</p>
-      <p>${obj.totalPages}</p>
-      <p>${obj.read}</p>
-      </div>
-    `;
-    target.appendChild(newData);
-  }
-  myLibrary.forEach(myFunction);
-}
-
 function displayForm() {
-  const target = document.getElementById('add-btn');
+  targetbtn.style.display = 'none';
   target.style.display = 'none';
-  const target1 = document.getElementById('demo');
-  target1.style.display = 'none';
-  const target2 = document.getElementById('display');
-  target2.style.display = 'block';
+  targetdisplay.style.display = 'block';
 }
 
 function displayBooks() {
-  const name = document.getElementById('bookName');
-  const author = document.getElementById('authorName');
-  const pages = document.getElementById('totalPages');
-  addBookToLibrary(name, author, pages);
-
-  const target = document.getElementById('add-btn');
-  target.style.display = 'block';
-  const target1 = document.getElementById('demo');
-  target1.style.display = 'block';
-  const target2 = document.getElementById('display');
-  target2.style.display = 'none';
+  let count = 0;
+  function myFunction(obj) {
+    if (count >= counter) {
+      const newData = document.createElement('div');
+      newData.classList.add('col-4');
+      newData.classList.add('mb-3');
+      newData.innerHTML = `
+        <div class="col-sm bg-success p-4 border-light rounded">
+        <h1 class = 'w-fit-content m-auto'>${obj.booktitle}</h1>
+        <p class = 'mt-2'>${obj.author}</p>
+        <p>${obj.totalPages}</p>
+        <p>${obj.read}</p>
+        </div>
+      `;
+      target.appendChild(newData);
+    }
+    count += 1;
+  }
+  myLibrary.forEach(obj => myFunction(obj));
 }
 
-document.getElementById('add-btn').onclick = () => {
-  displayForm();
-};
-
-document.getElementById('submitButton').onclick = () => {
-  displayBooks();
-};
-
-display();
-
-const varib = document.getElementById('bookName');
-varib.addEventListener('submit', (e) => {
+targetbtn.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(e);
+  displayForm();
+});
+
+document.querySelector('#bookForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const bookname = document.querySelector('#bookName').value;
+  const author = document.querySelector('#authorName').value;
+  const pages = document.querySelector('#totalPages').value;
+  if (bookname !== '' && author !== '' && pages !== '') {
+    addBookToLibrary(bookname, author, pages);
+    displayBooks(counter);
+    counter += 1;
+    targetbtn.style.display = 'block';
+    target.style.display = 'flex';
+    targetdisplay.style.display = 'none';
+  } else {
+    alert('Book Title, Author Name and Total Pages must be filled out');
+  }
 });
