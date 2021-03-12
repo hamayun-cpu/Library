@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <title>Document</title>
+  <title>Library</title>
 </head>
 <body>
-  <button onclick="displayForm()" id = "add-btn" type="button" class="btn btn-primary ml-5 mt-5">Add a Book</button>
+  <h1 class="w-fit-content mx-auto mt-5 font-weight-bold">Library</h1>
+  <button id = "add-btn" type="button" class="btn btn-primary ml-5 mt-5">Add a Book</button>
 
-  <div class="container" id="conatiner">
+  <div class="container mt-5" id="conatiner">
     <div class="row" id="demo"> </div>
   </div>
 
   <div id = 'display'>
-    <h2>HTML Forms</h2>
-      <form action="/action_page.php">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" value="Doe"><br><br>
-        <input type="submit" value="Submit">
+    <h2 class="w-50 m-auto">Add a New Book</h2>
+      <form class="w-50 m-auto">
+        <input class="w-100" type="text" id="bookName" placeholder="Enter Book Name"><br><br>
+        <input class="w-100" type="text" id="authorName" placeholder="Enter Author Name"><br><br>
+        <input class="w-100" type="text" id="totalPages" placeholder="Enter Total Pages"><br><br>
+        <input class="w-50 mx-auto" type="submit" value="Submit" id = "submitButton">
       </form> 
   </div>
 

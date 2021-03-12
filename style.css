@@ -1,3 +1,7 @@
 #display {
   display: none;
 }
+
+.w-fit-content {
+  width: fit-content;
+}

@@ -7,9 +7,14 @@ function Book(name, author, totalPages, read) {
   this.read = read;
 }
 
+function saveLibrary() {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
 function addBookToLibrary(name, author, totalPages, read = false) {
   const book = new Book(name, author, totalPages, read);
   myLibrary.push(book);
+  saveLibrary();
 }
 
 function display() {
@@ -25,27 +30,46 @@ function display() {
       <p>${obj.read}</p>
       </div>
     `;
-
     target.appendChild(newData);
   }
-
   myLibrary.forEach(myFunction);
 }
 
 function displayForm() {
-  const target = document.getElementById('btn-primary');
-  target.classList.add('d-none');
-  const target1 = document.getElementById('container');
-  target1.classList.add('d-none');
+  const target = document.getElementById('add-btn');
+  target.style.display = 'none';
+  const target1 = document.getElementById('demo');
+  target1.style.display = 'none';
   const target2 = document.getElementById('display');
   target2.style.display = 'block';
 }
 
-addBookToLibrary('book1', 'hamayun', 200);
+function displayBooks() {
+  const name = document.getElementById('bookName');
+  const author = document.getElementById('authorName');
+  const pages = document.getElementById('totalPages');
+  addBookToLibrary(name, author, pages);
 
-addBookToLibrary('book2', 'aqib', 250);
+  const target = document.getElementById('add-btn');
+  target.style.display = 'block';
+  const target1 = document.getElementById('demo');
+  target1.style.display = 'block';
+  const target2 = document.getElementById('display');
+  target2.style.display = 'none';
+}
 
-addBookToLibrary('book2', 'talha', 250);
+document.getElementById('add-btn').onclick = () => {
+  displayForm();
+};
 
+document.getElementById('submitButton').onclick = () => {
+  displayBooks();
+};
 
 display();
+
+const varib = document.getElementById('bookName');
+varib.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(e);
+});
