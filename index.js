@@ -2,6 +2,7 @@ const myLibrary = [];
 const target = document.getElementById('demo');
 const targetbtn = document.getElementById('add-btn');
 const targetdisplay = document.getElementById('display');
+const alertText = document.getElementById('alertText');
 let counter = 0;
 
 function Book(booktitle, author, totalPages, read) {
@@ -35,7 +36,7 @@ function displayBooks() {
       newData.classList.add('col-4');
       newData.classList.add('mb-3');
       newData.innerHTML = `
-        <div class="col-sm bg-success p-4 border-light rounded">
+        <div id = '${count}' class="col-sm bg-success p-4 border-light rounded">
         <h1 class = 'w-fit-content m-auto'>${obj.booktitle}</h1>
         <p class = 'mt-2'>${obj.author}</p>
         <p>${obj.totalPages}</p>
@@ -54,6 +55,10 @@ targetbtn.addEventListener('click', (e) => {
   displayForm();
 });
 
+function customAlert() {
+  alertText.style.display = 'block';
+}
+
 document.querySelector('#bookForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const bookname = document.querySelector('#bookName').value;
@@ -66,7 +71,16 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
     targetbtn.style.display = 'block';
     target.style.display = 'flex';
     targetdisplay.style.display = 'none';
+    alertText.style.display = 'none';
   } else {
-    alert('Book Title, Author Name and Total Pages must be filled out');
+    customAlert();
   }
+});
+
+const delButton = document.getElementById('delButton');
+delButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  const myobj = document.getElementById('1');
+  myobj.remove();
+  console.log('hahahahahah');
 });

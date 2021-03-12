@@ -5,3 +5,7 @@
 .w-fit-content {
   width: fit-content;
 }
+
+#alertText {
+  display: none;
+}
