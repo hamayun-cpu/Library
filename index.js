@@ -64,8 +64,9 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
   const bookname = document.querySelector('#bookName').value;
   const author = document.querySelector('#authorName').value;
   const pages = document.querySelector('#totalPages').value;
+  const readStatus = document.querySelector('#myCheck').checked;
   if (bookname !== '' && author !== '' && pages !== '') {
-    addBookToLibrary(bookname, author, pages);
+    addBookToLibrary(bookname, author, pages, readStatus);
     displayBooks(counter);
     counter += 1;
     targetbtn.style.display = 'block';
