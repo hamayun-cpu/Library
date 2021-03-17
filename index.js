@@ -16,7 +16,7 @@ function saveLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-function addBookToLibrary(booktitle, author, totalPages, read = false) {
+function addBookToLibrary(booktitle, author, totalPages, read = true) {
   const book = new Book(booktitle, author, totalPages, read);
   myLibrary.push(book);
   saveLibrary();
@@ -40,7 +40,7 @@ function displayBooks() {
         <h1 class = 'm-auto text-nowrap'>Title: ${obj.booktitle}</h1>
         <p class = 'mt-2'>Author: ${obj.author}</p>
         <p>Total Pages: ${obj.totalPages}</p>
-        <p>${obj.read}</p>
+        <p>Read? <input type="checkbox" id="myCheck"></p>
         </div>
       `;
       target.appendChild(newData);
@@ -64,10 +64,9 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
   const bookname = document.querySelector('#bookName').value;
   const author = document.querySelector('#authorName').value;
   const pages = document.querySelector('#totalPages').value;
-  const readStatus = document.querySelector('#myCheck').checked;
   if (bookname !== '' && author !== '' && pages !== '') {
-    addBookToLibrary(bookname, author, pages, readStatus);
-    displayBooks(counter);
+    addBookToLibrary(bookname, author, pages);
+    displayBooks();
     counter += 1;
     targetbtn.style.display = 'block';
     target.style.display = 'flex';
@@ -83,5 +82,4 @@ delButton.addEventListener('click', (e) => {
   e.preventDefault();
   const myobj = document.getElementById('1');
   myobj.remove();
-  console.log('hahahahahah');
 });
