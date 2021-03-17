@@ -33,13 +33,13 @@ function displayBooks() {
   function myFunction(obj) {
     if (count >= counter) {
       const newData = document.createElement('div');
-      newData.classList.add('col-4');
+      newData.classList.add('col-6');
       newData.classList.add('mb-3');
       newData.innerHTML = `
         <div id = '${count}' class="col-sm bg-success p-4 border-light rounded">
-        <h1 class = 'w-fit-content m-auto'>${obj.booktitle}</h1>
-        <p class = 'mt-2'>${obj.author}</p>
-        <p>${obj.totalPages}</p>
+        <h1 class = 'm-auto text-nowrap'>Title: ${obj.booktitle}</h1>
+        <p class = 'mt-2'>Author: ${obj.author}</p>
+        <p>Total Pages: ${obj.totalPages}</p>
         <p>${obj.read}</p>
         </div>
       `;
