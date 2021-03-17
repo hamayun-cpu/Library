@@ -2,7 +2,7 @@
 const myLibrary = [];
 const target = document.getElementById('demo');
 const targetbtn = document.getElementById('add-btn');
-let targetdisplay = document.getElementById('display');
+const targetdisplay = document.getElementById('display');
 const alertText = document.getElementById('alertText');
 let counter = 0;
 
