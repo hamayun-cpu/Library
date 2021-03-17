@@ -36,11 +36,12 @@ function displayBooks() {
       newData.classList.add('col-6');
       newData.classList.add('mb-3');
       newData.innerHTML = `
-        <div id = '${count}' class="col-sm bg-success p-4 border-light rounded">
+        <div class="col-sm bg-success p-4 border-light rounded '${count}'">
         <h1 class = 'm-auto text-nowrap'>Title: ${obj.booktitle}</h1>
         <p class = 'mt-2'>Author: ${obj.author}</p>
         <p>Total Pages: ${obj.totalPages}</p>
         <p>Read? <input type="checkbox" id="myCheck"></p>
+        <button type='button' class="btn btn-danger del '${count}'">Delete Book</button>
         </div>
       `;
       target.appendChild(newData);
@@ -77,9 +78,22 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
   }
 });
 
-const delButton = document.getElementById('delButton');
-delButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  const myobj = document.getElementById('1');
-  myobj.remove();
-});
+// const delButton = document.querySelectorAll('.del');
+// delButton.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   console.log(e.target);
+//   // const myobj = document.querySelectorAll(`.${count}`);
+//   // myobj.remove();
+// });
+
+
+function deletee () {
+  const delButton = document.querySelectorAll('.del');
+  delButton.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      console.log(e.target);
+    });
+  });
+}
+
+deletee();
