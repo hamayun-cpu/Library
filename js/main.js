@@ -3,6 +3,7 @@
 import {
   myLibrary, target, targetbtn, targetdisplay, alertText, addBookToLibrary, customAlert,
   displayForm,
+// eslint-disable-next-line import/extensions
 } from './library.js';
 
 let counter = 0;
